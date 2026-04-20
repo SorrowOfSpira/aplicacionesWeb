@@ -1,13 +1,11 @@
 <?php
 
-// 1. Cargamos el autoloader de Composer
 require __DIR__ . '/../vendor/autoload.php';
 
-// 2. Configuración para Vercel (Sistema de archivos de solo lectura)
-// Definimos la ruta de almacenamiento en /tmp (RAM de Vercel)
+// 1. Definir el storage temporal
 $storagePath = '/tmp/storage';
 
-// Creamos la estructura de carpetas necesaria si no existe
+// 2. Crear las carpetas necesarias
 foreach ([
     "$storagePath/framework/cache",
     "$storagePath/framework/sessions",
@@ -19,16 +17,13 @@ foreach ([
     }
 }
 
-// 3. Arrancamos la aplicación Laravel
+// 3. Arrancar la app
 $app = require_once __DIR__ . '/../bootstrap/app.php';
 
-// 4. Forzamos a Laravel a usar el nuevo path de storage
+// 4. Configurar el storage path antes de resolver el Kernel
 $app->useStoragePath($storagePath);
 
-// 5. Forzamos que los logs salgan por consola (stderr) y no a un archivo
-config(['logging.default' => 'stderr']);
-
-// 6. Manejamos la petición
+// 5. Correr el Kernel
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(
