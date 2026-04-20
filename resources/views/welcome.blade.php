@@ -20,6 +20,7 @@
             <a href="{{ route('dashboard') }}" class="inline-block bg-[#D84315] text-white px-6 py-3 rounded-md font-semibold hover:bg-opacity-90 transition-all">
                 Ir al Dashboard
             </a>
+            <h1 class="text-center font-bold text-[#1B5E20] mb-2 font-['Nunito']">Autores: Franco Matamala, Ash Pablovich</h1>
         </div>
     </body>
 </html>
