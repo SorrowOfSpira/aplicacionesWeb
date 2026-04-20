@@ -16,3 +16,12 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
+
+    // Crear carpetas temporales para las vistas compiladas en Vercel
+    if (env('APP_ENV') !== 'local') {
+        $viewPath = '/tmp/storage/framework/views';
+        if (!is_dir($viewPath)) {
+            mkdir($viewPath, 0755, true);
+        }
+        config(['view.compiled' => $viewPath]);
+}
