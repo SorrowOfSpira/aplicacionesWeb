@@ -10,7 +10,7 @@
         <link href="https://fonts.bunny.net/css?family=inter:400,500,600|nunito:400,600,700|playfair-display:400,600&display=swap" rel="stylesheet" />
 
         <!-- Carga de Vite -->
-        @vite(['resources/css/app.css', 'resources/js/app.tsx'])
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="bg-[#F1F8E9] text-[#2E2E2E] antialiased min-h-screen flex items-center justify-center font-['Inter']">
         <div class="text-center bg-[#FAFAF5] p-10 rounded-xl shadow-sm border border-[#E0E0E0] max-w-lg w-full">
