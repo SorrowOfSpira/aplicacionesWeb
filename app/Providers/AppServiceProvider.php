@@ -19,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Forzar HTTPS en producción (Vercel)
+        if (config('app.env') !== 'local') {
+            URL::forceScheme('https');
+        }
     }
 }
