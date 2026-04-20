@@ -21,5 +21,9 @@
                 Ir al Dashboard
             </a>
         </div>
+        <div class="text-center bg-[#FAFAF5] p-10 rounded-xl shadow-sm border border-[#E0E0E0] max-w-lg w-full">
+            <h1 class="text-center font-bold text-[#1B5E20] mb-2 font-['Nunito']">Autores: Franco Matamala, Ash Pablovich</h1>
+            </a>
+        </div>
     </body>
 </html>
