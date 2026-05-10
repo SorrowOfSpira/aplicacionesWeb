@@ -14,7 +14,7 @@
     </head>
     <body class="bg-[#F1F8E9] text-[#2E2E2E] antialiased min-h-screen flex items-center justify-center font-['Inter']">
         <div class="text-center bg-[#FAFAF5] p-10 rounded-xl shadow-sm border border-[#E0E0E0] max-w-lg w-full">
-            <p class="text-[#6B6B6B] mb-8 font-['Nunito']">Bienvenido al dashboard</p>
+            <p class="text-[#6B6B6B] mb-8 font-['Nunito']">Bienvenido al dashboard de Aplicaciones Web</p>
         </div>
     </body>
 </html>
