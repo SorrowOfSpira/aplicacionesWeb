@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Producto extends Model
 {
     // Campos que permitimos llenar desde un formulario
-    protected $fillable = ['nombre', 'nombre_cientifico', 'precio'];
+    protected $fillable = ['nombre', 'nombre_cientifico', 'precio', 'img_url'];
 
     /**
      * Relación con los Tags (Categorías)

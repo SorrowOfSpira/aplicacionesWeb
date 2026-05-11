@@ -32,11 +32,49 @@ class ProductoController extends Controller
             'nombre' => 'required|string|max:255',
             'nombre_cientifico' => 'nullable|string|max:255',
             'precio' => 'required|numeric|min:0',
-            'tags' => 'nullable|array' // Cambié a nullable por si algún producto no tiene tags
+            'tags' => 'nullable|array',
+            'img_url' => 'nullable|image|max:2048'
         ]);
 
+        $imagenUrl = null;
+
+        if ($request->hasFile('imagen')) {
+
+            $cloud_name = 'dbiivmucu';
+            $upload_preset = 'productos_vivero';
+
+            $imagen = $request->file('imagen')->getRealPath();
+
+            $url = "https://api.cloudinary.com/v1_1/$cloud_name/image/upload";
+
+            $postFields = [
+                'file' => new \CURLFile($imagen),
+                'upload_preset' => $upload_preset
+            ];
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $response = curl_exec($ch);
+
+            curl_close($ch);
+
+            $data = json_decode($response, true);
+
+            $imagenUrl = $data['secure_url'];
+}
+
         // 2. Creamos el producto
-        $producto = Producto::create($request->only('nombre', 'nombre_cientifico', 'precio'));
+        $producto = Producto::create([
+            'nombre' => $request->nombre,
+            'nombre_cientifico' => $request->nombre_cientifico,
+            'precio' => $request->precio,
+            'img_url' => $imagenUrl
+        ]);
 
         // 3. Guardamos la relación en la tabla pivote
         if ($request->has('tags')) {

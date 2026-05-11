@@ -51,7 +51,7 @@
 
                 <div class="bg-[#F9FBE7] p-6 rounded-lg mb-10 border border-[#E0E0E0]">
                     <h3 class="text-[#1B5E20] font-bold text-sm uppercase tracking-wider mb-4">Registrar Nuevo Producto</h3>
-                    <form action="{{ route('productos.store') }}" method="POST" class="space-y-4">
+                    <form action="{{ route('productos.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
@@ -68,6 +68,14 @@
                                 <label class="block text-[10px] font-bold text-[#1B5E20] uppercase mb-1">Precio ($)</label>
                                 <input type="number" step="0.01" name="precio" value="{{ old('precio') }}" required 
                                        class="w-full rounded-md border-[#E0E0E0] focus:border-[#1B5E20] focus:ring-[#1B5E20] bg-white text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-[#1B5E20] uppercase mb-1">
+                                    Imagen
+                                </label>
+
+                                <input type="file" name="imagen"
+                                    class="w-full text-sm">
                             </div>
                         </div>
                         
@@ -99,6 +107,7 @@
                                 <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0]">Científico</th>
                                 <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0]">Precio</th>
                                 <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0]">Etiquetas</th>
+                                <th class="px-6 py-4 text-[#1B5E20] font-bold"> Imagen</th>
                                 <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] text-center">Acciones</th>
                             </tr>
                         </thead>
@@ -116,6 +125,12 @@
                                             </span>
                                         @endforeach
                                     </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    @if($producto->img_url)
+                                        <img src="{{ $producto->img_url }}"
+                                            class="w-20 h-20 object-cover rounded-lg">
+                                    @endif
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex justify-center gap-4">
