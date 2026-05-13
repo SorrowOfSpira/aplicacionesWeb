@@ -14,8 +14,8 @@
         
         <div class="max-w-6xl mx-auto">
             <div class="mb-6">
-                <a href="{{ url('/') }}" class="text-[#1B5E20] font-semibold hover:underline flex items-center gap-2 font-['Nunito']">
-                    ← Volver al inicio del Vivero
+                <a href="{{ url('/dashboard') }}" class="text-[#1B5E20] font-semibold hover:underline flex items-center gap-2 font-['Nunito']">
+                    ← Volver al Dashboard
                 </a>
             </div>
 
