@@ -83,27 +83,24 @@ class ProductoController extends Controller
 
         return redirect()->route('productos.index')->with('success', '¡Producto agregado al stock con éxito!');
     }
-
-    /**
-     * Actualiza el producto (Para el Layer flotante de edición)
-     */
     public function update(Request $request, $id)
     {
+        // 1. Validamos (incluyendo los tags)
         $request->validate([
             'nombre' => 'required|string|max:255',
             'nombre_cientifico' => 'nullable|string|max:255',
             'precio' => 'required|numeric|min:0',
+            'tags' => 'nullable|array' // Añadimos esto
         ]);
 
         $producto = Producto::findOrFail($id);
         $producto->update($request->only('nombre', 'nombre_cientifico', 'precio'));
 
+        $producto->tags()->sync($request->get('tags', []));
+
         return redirect()->route('productos.index')->with('success', 'Producto actualizado correctamente');
     }
 
-    /**
-     * Elimina el producto
-     */
     public function destroy($id)
     {
         $producto = Producto::findOrFail($id);
