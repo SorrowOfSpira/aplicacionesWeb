@@ -7,7 +7,7 @@ Una plataforma integral de administración de e-commerce diseñada específicame
 
 ### 🌐 Enlaces de Despliegue
 *   **Producción (Main):** [https://aplicaciones-web-2urn.vercel.app/](https://aplicaciones-web-2urn.vercel.app/)
-*   **Staging:** [https://aplicaciones-web-2urn-git-staging-sorrowofspiras-projects.vercel.app/](https://aplicaciones-web-2urn-git-staging-sorrowofspiras-projects.vercel.app/)
+*   **Staging:** [https://aplicaciones-web-2urn-git-staging-sorrowofspiras-projects.vercel.app?_vercel_share=Yj3yuwfA3fKoihukUOwk3gP0JVcU3JXA](https://aplicaciones-web-2urn-git-staging-sorrowofspiras-projects.vercel.app?_vercel_share=Yj3yuwfA3fKoihukUOwk3gP0JVcU3JXA)
 
 ---
 
