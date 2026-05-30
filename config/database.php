@@ -96,6 +96,9 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
+            'options' => extension_loaded('pdo_pgsql') ? [
+                PDO::ATTR_EMULATE_PREPARES => true,
+            ] : [],
             'sslmode' => env('DB_SSLMODE', 'prefer'),
         ],
 
