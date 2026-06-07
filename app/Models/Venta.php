@@ -8,6 +8,8 @@ use App\Models\Cliente;
 class Venta extends Model
 {
     protected $table = 'venta';
+    public $timestamps = false;
+    protected $fillable = ['fecha', 'idcliente'];
 
     public function detalles()
     {

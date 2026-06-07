@@ -24,6 +24,11 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     Route::get('/ventas', [VentaController::class, 'index'])->name('ventas.index');
+    Route::get('/ventas/create', [VentaController::class, 'create'])->name('ventas.create');
+    Route::post('/ventas', [VentaController::class, 'store'])->name('ventas.store');
+    Route::get('/ventas/{id}/edit', [VentaController::class, 'edit'])->name('ventas.edit');
+    Route::put('/ventas/{id}', [VentaController::class, 'update'])->name('ventas.update');
+    Route::delete('/ventas/{id}', [VentaController::class, 'destroy'])->name('ventas.destroy');
 
     Route::resource('usuarios', UserController::class);
     Route::resource('clientes', ClienteController::class);

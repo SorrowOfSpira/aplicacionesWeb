@@ -14,7 +14,7 @@ class ProductoController extends Controller
     public function index()
     {
         // Traemos los productos con sus tags para la tabla
-        $productos = Producto::with('tags')->get();
+        $productos = Producto::with('tags')->orderBy('id', 'desc')->get();
         
         // IMPORTANTE: Traemos los tags para que aparezcan los checkboxes en el formulario
         $tags = Tag::all(); 

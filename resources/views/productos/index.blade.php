@@ -42,15 +42,18 @@
                     <table class="w-full text-left border-collapse" id="productosTable">
                         <thead class="bg-[#F9FBE7]">
                             <tr>
+                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(0)">
+                                    <div class="flex items-center gap-1">ID <span class="text-[10px] opacity-30 group-hover:opacity-100">↕</span></div>
+                                </th>
                                 <th class="px-6 py-4 text-[#1B5E20] font-bold border-b border-[#E0E0E0]">Imagen</th>
-                                
-                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(1)">
+
+                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(2)">
                                     <div class="flex items-center gap-1">Producto <span class="text-[10px] opacity-30 group-hover:opacity-100">↕</span></div>
                                 </th>
-                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(2)">
+                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(3)">
                                     <div class="flex items-center gap-1">Científico <span class="text-[10px] opacity-30 group-hover:opacity-100">↕</span></div>
                                 </th>
-                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(3)">
+                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(4)">
                                     <div class="flex items-center gap-1">Precio <span class="text-[10px] opacity-30 group-hover:opacity-100">↕</span></div>
                                 </th>
                                 <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0]">Etiquetas</th>
@@ -60,6 +63,7 @@
                         <tbody class="divide-y divide-[#E0E0E0]">
                             @foreach($productos as $producto)
                             <tr class="hover:bg-[#fcfcf9] transition-colors">
+                                <td class="px-6 py-4 font-mono text-sm text-[#D84315]" data-val="{{ $producto->id }}">#{{ $producto->id }}</td>
                                 <td class="px-6 py-4">
                                     @if($producto->img_url)
                                         <img src="{{ $producto->img_url }}" class="w-14 h-14 object-cover rounded-lg shadow-sm border border-[#E0E0E0] bg-white">

@@ -61,8 +61,12 @@
                                 <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(2)">
                                     <div class="flex items-center gap-1">Email <span class="text-[10px] opacity-30 group-hover:opacity-100">↕</span></div>
                                 </th>
-                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0]">Teléfono</th>
-                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0]">Dirección</th>
+                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(3)">
+                                    <div class="flex items-center gap-1">Teléfono <span class="text-[10px] opacity-30 group-hover:opacity-100">↕</span></div>
+                                </th>
+                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(4)">
+                                    <div class="flex items-center gap-1">Dirección <span class="text-[10px] opacity-30 group-hover:opacity-100">↕</span></div>
+                                </th>
                                 <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] text-center">Acciones</th>
                             </tr>
                         </thead>

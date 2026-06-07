@@ -17,4 +17,9 @@ class Producto extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    public function detallesVenta()
+    {
+        return $this->hasMany(Detalleventa::class, 'idproducto');
+    }
 }
