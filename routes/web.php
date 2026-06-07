@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\ClienteController;
 
 // Auth
 Route::get('/login', [LoginController::class, 'showForm'])->name('login');
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/ventas', [VentaController::class, 'index'])->name('ventas.index');
 
     Route::resource('usuarios', UserController::class);
+    Route::resource('clientes', ClienteController::class);
     Route::resource('productos', ProductoController::class);
     Route::resource('tags', TagController::class);
 });
