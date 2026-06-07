@@ -1,19 +1,30 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\VentaController;
 
+// Auth
+Route::get('/login', [LoginController::class, 'showForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard'); // Asegúrate de que exista resources/views/dashboard.blade.php
-})->name('dashboard'); // <-- Esto es lo que soluciona tu 
+// Rutas protegidas
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::resource('usuarios', UserController::class);
-Route::resource('productos', ProductoController::class);
-Route::resource('tags', TagController::class);
+    Route::get('/ventas', [VentaController::class, 'index'])->name('ventas.index');
+
+    Route::resource('usuarios', UserController::class);
+    Route::resource('productos', ProductoController::class);
+    Route::resource('tags', TagController::class);
+});

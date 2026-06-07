@@ -44,10 +44,23 @@
                     <p class="text-[10px] text-[#9E9E9E] uppercase mt-1 tracking-widest">Accesos</p>
                 </a>
 
+                <!-- Botón Ventas -->
+                <a href="{{ route('ventas.index') }}" class="group p-6 bg-white border border-[#E0E0E0] rounded-xl hover:border-[#1B5E20] hover:shadow-md transition-all duration-300">
+                    <div class="text-3xl mb-3 group-hover:scale-110 transition-transform">🛒</div>
+                    <h3 class="font-bold text-[#1B5E20] font-['Nunito']">Ventas</h3>
+                    <p class="text-[10px] text-[#9E9E9E] uppercase mt-1 tracking-widest">Registro</p>
+                </a>
+
             </div>
 
-            <footer class="mt-12 pt-6 border-t border-[#E0E0E0] text-[10px] text-[#9E9E9E] font-mono">
-                SISTEMA VIVERO v1.0 | NEON DB CONNECTED
+            <footer class="mt-12 pt-6 border-t border-[#E0E0E0] flex items-center justify-between text-[10px] text-[#9E9E9E] font-mono">
+                <span>SISTEMA VIVERO v1.0 | NEON DB CONNECTED</span>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="text-[#9E9E9E] hover:text-red-400 transition-colors duration-200 uppercase tracking-widest">
+                        Cerrar sesión
+                    </button>
+                </form>
             </footer>
         </div>
     </body>
