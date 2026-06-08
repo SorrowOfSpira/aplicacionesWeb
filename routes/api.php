@@ -6,6 +6,13 @@ use App\Http\Controllers\Api\ProductoController;
 use App\Http\Controllers\Api\TagController;
 use Illuminate\Support\Facades\Route;
 
+// Ruta de diagnóstico temporal — borrar después
+Route::get('/ping', fn() => response()->json([
+    'ok'  => true,
+    'uri' => request()->getRequestUri(),
+    'url' => request()->fullUrl(),
+]));
+
 // ─── Públicos ────────────────────────────────────────────────────────────────
 Route::get('/productos',        [ProductoController::class, 'index']);
 Route::get('/productos/{id}',   [ProductoController::class, 'show']);
