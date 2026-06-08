@@ -32,6 +32,7 @@ class ProductoController extends Controller
             'nombre' => 'required|string|max:255',
             'nombre_cientifico' => 'nullable|string|max:255',
             'precio' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
             'tags' => 'nullable|array',
             'img_url' => 'nullable|image|max:2048'
         ]);
@@ -73,6 +74,7 @@ class ProductoController extends Controller
             'nombre' => $request->nombre,
             'nombre_cientifico' => $request->nombre_cientifico,
             'precio' => $request->precio,
+            'stock' => $request->stock,
             'img_url' => $imagenUrl
         ]);
 
@@ -90,11 +92,12 @@ class ProductoController extends Controller
             'nombre' => 'required|string|max:255',
             'nombre_cientifico' => 'nullable|string|max:255',
             'precio' => 'required|numeric|min:0',
-            'tags' => 'nullable|array' // Añadimos esto
+            'stock' => 'required|integer|min:0',
+            'tags' => 'nullable|array'
         ]);
 
         $producto = Producto::findOrFail($id);
-        $producto->update($request->only('nombre', 'nombre_cientifico', 'precio'));
+        $producto->update($request->only('nombre', 'nombre_cientifico', 'precio', 'stock'));
 
         $producto->tags()->sync($request->get('tags', []));
 
