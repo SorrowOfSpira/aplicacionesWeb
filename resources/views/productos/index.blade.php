@@ -42,16 +42,22 @@
                     <table class="w-full text-left border-collapse" id="productosTable">
                         <thead class="bg-[#F9FBE7]">
                             <tr>
+                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(0)">
+                                    <div class="flex items-center gap-1">ID <span class="text-[10px] opacity-30 group-hover:opacity-100">↕</span></div>
+                                </th>
                                 <th class="px-6 py-4 text-[#1B5E20] font-bold border-b border-[#E0E0E0]">Imagen</th>
-                                
-                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(1)">
+
+                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(2)">
                                     <div class="flex items-center gap-1">Producto <span class="text-[10px] opacity-30 group-hover:opacity-100">↕</span></div>
                                 </th>
-                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(2)">
+                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(3)">
                                     <div class="flex items-center gap-1">Científico <span class="text-[10px] opacity-30 group-hover:opacity-100">↕</span></div>
                                 </th>
-                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(3)">
+                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(4)">
                                     <div class="flex items-center gap-1">Precio <span class="text-[10px] opacity-30 group-hover:opacity-100">↕</span></div>
+                                </th>
+                                <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] cursor-pointer hover:bg-[#F1F8E9] transition-colors group" onclick="sortTable(5)">
+                                    <div class="flex items-center gap-1">Stock <span class="text-[10px] opacity-30 group-hover:opacity-100">↕</span></div>
                                 </th>
                                 <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0]">Etiquetas</th>
                                 <th class="px-6 py-4 text-[#1B5E20] font-bold font-['Nunito'] border-b border-[#E0E0E0] text-center">Acciones</th>
@@ -60,6 +66,7 @@
                         <tbody class="divide-y divide-[#E0E0E0]">
                             @foreach($productos as $producto)
                             <tr class="hover:bg-[#fcfcf9] transition-colors">
+                                <td class="px-6 py-4 font-mono text-sm text-[#D84315]" data-val="{{ $producto->id }}">#{{ $producto->id }}</td>
                                 <td class="px-6 py-4">
                                     @if($producto->img_url)
                                         <img src="{{ $producto->img_url }}" class="w-14 h-14 object-cover rounded-lg shadow-sm border border-[#E0E0E0] bg-white">
@@ -72,6 +79,15 @@
                                 <td class="px-6 py-4 font-semibold text-[#2E2E2E]">{{ $producto->nombre }}</td>
                                 <td class="px-6 py-4 text-xs italic text-[#6B6B6B]">{{ $producto->nombre_cientifico ?? 'N/A' }}</td>
                                 <td class="px-6 py-4 font-mono text-sm text-[#D84315] font-bold" data-val="{{ $producto->precio }}">${{ number_format($producto->precio, 2) }}</td>
+                                <td class="px-6 py-4 font-mono text-sm font-bold" data-val="{{ $producto->stock }}">
+                                    @if($producto->stock === 0)
+                                        <span class="px-2 py-1 bg-red-100 text-red-600 rounded-full text-xs">Sin stock</span>
+                                    @elseif($producto->stock <= 5)
+                                        <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs">{{ $producto->stock }} u.</span>
+                                    @else
+                                        <span class="text-[#1B5E20]">{{ $producto->stock }} u.</span>
+                                    @endif
+                                </td>
                                 <td class="px-6 py-4">
                                     <div class="flex flex-wrap gap-1">
                                         @foreach($producto->tags as $tag)
@@ -81,7 +97,7 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex justify-center gap-4">
-                                        <button onclick='openEditLayer({{ $producto->id }}, "{{ $producto->nombre }}", "{{ $producto->nombre_cientifico }}", {{ $producto->precio }}, @json($producto->tags->pluck("id")))'
+                                        <button onclick='openEditLayer({{ $producto->id }}, "{{ $producto->nombre }}", "{{ $producto->nombre_cientifico }}", {{ $producto->precio }}, {{ $producto->stock }}, @json($producto->tags->pluck("id")))'
                                             class="text-[#1B5E20] hover:text-[#D84315] text-xs font-bold uppercase tracking-widest transition-all">Editar</button>
                                         <button type="button" onclick="openDeleteModal({{ $producto->id }}, '{{ $producto->nombre }}')" 
                                             class="text-red-400 hover:text-red-600 text-xs font-bold uppercase tracking-widest transition-all">Quitar</button>
@@ -116,6 +132,10 @@
                         <div>
                             <label class="block text-[10px] font-bold text-[#1B5E20] uppercase mb-1 ml-1">Precio ($)</label>
                             <input type="number" step="0.01" name="precio" required class="w-full border-b-2 border-[#E0E0E0] focus:border-[#1B5E20] focus:ring-0 bg-transparent py-2">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-[#1B5E20] uppercase mb-1 ml-1">Stock (unidades)</label>
+                            <input type="number" name="stock" min="0" value="0" required class="w-full border-b-2 border-[#E0E0E0] focus:border-[#1B5E20] focus:ring-0 bg-transparent py-2">
                         </div>
                         <div>
                             <label class="block text-[10px] font-bold text-[#1B5E20] uppercase mb-1 ml-1">Imagen del Producto</label>
@@ -158,6 +178,10 @@
                     <div>
                         <label class="block text-[10px] font-bold text-[#1B5E20] uppercase mb-1">Precio Actual</label>
                         <input type="number" step="0.01" id="edit_precio" name="precio" required class="w-full border-b-2 border-[#E0E0E0] focus:border-[#1B5E20] focus:ring-0 bg-transparent py-2 text-[#D84315] font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-[#1B5E20] uppercase mb-1">Stock (unidades)</label>
+                        <input type="number" id="edit_stock" name="stock" min="0" required class="w-full border-b-2 border-[#E0E0E0] focus:border-[#1B5E20] focus:ring-0 bg-transparent py-2">
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold text-[#1B5E20] uppercase mb-2">Actualizar Categorías</label>
@@ -212,11 +236,12 @@
             // Lógica Modales
             function openCreateModal() { document.getElementById('createModal').classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
             function closeCreateModal() { document.getElementById('createModal').classList.add('hidden'); document.body.style.overflow = 'auto'; }
-            function openEditLayer(id, nombre, cientifico, precio, selectedTags) {
+            function openEditLayer(id, nombre, cientifico, precio, stock, selectedTags) {
                 document.getElementById('editLayer').classList.remove('hidden');
                 document.getElementById('edit_nombre').value = nombre;
                 document.getElementById('edit_nombre_cientifico').value = (cientifico === 'null' || !cientifico) ? '' : cientifico;
                 document.getElementById('edit_precio').value = precio;
+                document.getElementById('edit_stock').value = stock;
                 document.querySelectorAll('.edit-tag-checkbox').forEach(cb => cb.checked = selectedTags.includes(parseInt(cb.value)));
                 document.getElementById('editForm').action = `/productos/${id}`;
                 document.body.style.overflow = 'hidden';

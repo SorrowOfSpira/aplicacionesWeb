@@ -51,6 +51,13 @@
                     <p class="text-[10px] text-[#9E9E9E] uppercase mt-1 tracking-widest">Registro</p>
                 </a>
 
+                <!-- Botón Clientes -->
+                <a href="{{ route('clientes.index') }}" class="group p-6 bg-white border border-[#E0E0E0] rounded-xl hover:border-[#1B5E20] hover:shadow-md transition-all duration-300">
+                    <div class="text-3xl mb-3 group-hover:scale-110 transition-transform">🧑‍🤝‍🧑</div>
+                    <h3 class="font-bold text-[#1B5E20] font-['Nunito']">Clientes</h3>
+                    <p class="text-[10px] text-[#9E9E9E] uppercase mt-1 tracking-widest">Compradores</p>
+                </a>
+
             </div>
 
             <footer class="mt-12 pt-6 border-t border-[#E0E0E0] flex items-center justify-between text-[10px] text-[#9E9E9E] font-mono">
