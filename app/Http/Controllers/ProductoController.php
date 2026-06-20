@@ -107,7 +107,7 @@ class ProductoController extends Controller
     public function destroy($id)
     {
         $producto = Producto::findOrFail($id);
-        $producto->tags()->detach(); // Borramos la relación en la tabla pivote primero
+        $producto->tags()->detach();
         $producto->delete();
 
         return redirect()->route('productos.index')->with('success', 'Producto eliminado del inventario');
