@@ -1,15 +1,5 @@
 {
   "version": 2,
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, PATCH, DELETE, OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization, X-Requested-With" }
-      ]
-    }
-  ],
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.7.1"
@@ -22,7 +12,22 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/api/index.php"
+      "methods": ["OPTIONS"],
+      "dest": "/api/index.php",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With"
+      }
     }
   ]
 }
