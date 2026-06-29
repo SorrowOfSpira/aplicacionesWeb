@@ -26,21 +26,22 @@ class VentaController extends Controller
         );
     }
 
-    public function store(Request $request)
+    public function storeCliente(Request $request)
     {
         $request->validate([
             'fecha'                      => 'required|date',
-            'idcliente'                  => 'required|exists:cliente,id',
             'productos'                  => 'required|array|min:1',
             'productos.*.idproducto'     => 'required|exists:productos,id',
             'productos.*.cantidad'       => 'required|integer|min:1',
             'productos.*.preciounitario' => 'required|integer|min:1',
         ]);
 
-        $venta = DB::transaction(function () use ($request) {
+        $idcliente = $request->user('clientes')->id;
+
+        $venta = DB::transaction(function () use ($request, $idcliente) {
             $venta = Venta::create([
                 'fecha'     => $request->fecha,
-                'idcliente' => $request->idcliente,
+                'idcliente' => $idcliente,
             ]);
 
             foreach ($request->productos as $item) {

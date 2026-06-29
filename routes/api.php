@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ClienteAuthController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\ProductoController;
 use App\Http\Controllers\Api\TagController;
+use App\Http\Controllers\Api\VentaController;
 use Illuminate\Support\Facades\Route;
 
 // ─── Públicos ────────────────────────────────────────────────────────────────
@@ -22,4 +23,5 @@ Route::middleware('auth:clientes')->group(function () {
     Route::post('/clientes/logout',      [ClienteAuthController::class, 'logout']);
     Route::get('/clientes/me',           [ClienteAuthController::class, 'me']);
     Route::get('/clientes/me/ventas',    [ClienteAuthController::class, 'misVentas']);
+    Route::post('/ventas',               [VentaController::class, 'storeCliente']);
 });
