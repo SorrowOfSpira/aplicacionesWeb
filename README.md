@@ -1,27 +1,76 @@
-# Vivero Admin - Gestión de Inventario y Personal
+# Vivero — Backend
 
-### Descripción de la aplicación
-Una plataforma integral de administración de e-commerce diseñada específicamente para comerciantes y administradores de viveros. Permite la gestión eficiente del stock de plantas, insumos de jardinería y el control del personal autorizado a través de una interfaz centralizada.
+API REST del e-commerce de plantas. Proyecto universitario. Gestiona productos, clientes, autenticación y ventas.
 
----
+## Enlaces
 
-### 🌐 Enlaces de Despliegue
-*   **Producción (Main):** [https://aplicaciones-web-2urn.vercel.app/](https://aplicaciones-web-2urn.vercel.app/)
-*   **Staging:** [https://aplicaciones-web-2urn-git-staging-sorrowofspiras-projects.vercel.app?_vercel_share=Yj3yuwfA3fKoihukUOwk3gP0JVcU3JXA](https://aplicaciones-web-2urn-git-staging-sorrowofspiras-projects.vercel.app?_vercel_share=Yj3yuwfA3fKoihukUOwk3gP0JVcU3JXA)
+- **App en producción:** https://aplicaciones-web-2urn.vercel.app/login
+- **Repositorio del frontend:** https://github.com/R4WR-XD/aplicaciones-web
 
 ---
 
-### Funcionalidades Principales
-| Módulo | Descripción |
-| :--- | :--- |
-| **Gestión de Inventario** | Control de productos con registro de nombres,nombres científicos,imagenes del producto y precios. |
-| **Administración** | Panel de control de usuarios para gestionar permisos y accesos. |
-| **Dashboard** | Centro de control centralizado para navegación rápida. |
+## Tecnologías
+
+- PHP 8.2 + Laravel 11
+- Laravel Sanctum (autenticación con tokens)
+- MySQL
+- Faker (seeders)
 
 ---
 
-### Stack Tecnológico
-*   **Framework:** Laravel
-*   **Base de Datos:** Neon DB (PostgreSQL 18.2)
-*   **Lenguajes:** PHP 8.2+ / JavaScript
-*   **Infraestructura:** Vercel
+## Funcionalidades
+
+- CRUD de productos con soft deletes y stock
+- Categorización de productos por tags
+- Registro e inicio de sesión de clientes con token Bearer
+- Historial de ventas por cliente
+- Registro de ventas con detalle por producto
+
+---
+
+## Endpoints (`/api`)
+
+### Públicos
+
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| `GET` | `/api/productos` | Listar productos |
+| `GET` | `/api/productos/{id}` | Detalle de un producto |
+| `GET` | `/api/tags` | Listar categorías |
+| `POST` | `/api/clientes/register` | Registrar nuevo cliente |
+| `POST` | `/api/clientes/login` | Login → devuelve Bearer token |
+
+### Autenticados (`Authorization: Bearer <token>`)
+
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| `POST` | `/api/clientes/logout` | Logout |
+| `GET` | `/api/clientes/me` | Datos del cliente autenticado |
+| `GET` | `/api/clientes/me/ventas` | Historial de compras del cliente |
+| `POST` | `/api/ventas` | Registrar una venta |
+
+
+
+## Tablas
+
+| Tabla | Columnas principales |
+|-------|---------------------|
+| `users` | `id`, `name`, `email`, `password` |
+| `cliente` | `id`, `nombre`, `apellido`, `email`, `password`, `telefono`, `direccion` |
+| `productos` | `id`, `nombre`, `nombre_cientifico`, `precio`, `stock` (soft deletes) |
+| `tags` | `id`, `nombre` |
+| `producto_tag` | `producto_id`, `tag_id` (pivot) |
+| `venta` | `id`, `fecha`, `idcliente` |
+| `detalleventa` | `id`, `idventa`, `idproducto`, `cantidad`, `preciounitario` |
+
+---
+
+## Usuarios de prueba.
+
+### Clientes (tabla `cliente`)
+
+| Campo | Valor |
+|-------|-------|
+| Email | `test@test.com` |
+| Contraseña | `testtest` |
+
