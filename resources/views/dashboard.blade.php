@@ -13,11 +13,37 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="bg-[#F1F8E9] text-[#2E2E2E] antialiased min-h-screen flex items-center justify-center font-['Inter']">
-        <div class="text-center bg-[#FAFAF5] p-10 rounded-2xl shadow-sm border border-[#E0E0E0] max-w-2xl w-full mx-4">
+        <div class="text-center bg-[#FAFAF5] p-10 rounded-2xl shadow-sm border border-[#E0E0E0] max-w-3xl w-full mx-4">
             
-            <header class="mb-10">
-                <h1 class="text-4xl font-bold text-[#1B5E20] mb-2 font-['Playfair_Display']">🌱 Panel de Control</h1>
-                <p class="text-[#6B6B6B] font-['Nunito']">Bienvenido al sistema de gestión del Vivero</p>
+            <header class="mb-10 flex justify-between items-start">
+                <div>
+                    <h1 class="text-4xl font-bold text-[#1B5E20] mb-2 font-['Playfair_Display']">
+                        🌱 Panel de Control
+                    </h1>
+                    <p class="text-[#6B6B6B] font-['Nunito']">
+                        Bienvenido al sistema de gestión del Vivero
+                    </p>
+                </div>
+
+                @auth
+                    <div class="flex items-center gap-8">
+                        <div class="flex items-center gap-2 px-4 py-2 border-2 border-[#1B5E20] rounded-xl text-[#1B5E20]">
+                            <span class="text-2xl">👤</span>
+                            <span class="font-semibold">{{ Auth::user()->name }}</span>
+                        </div>
+
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button
+                                type="submit"
+                                class="flex items-center gap-2 px-4 py-2 border-2 border-red-600 text-red-600 rounded-xl hover:bg-red-600 hover:text-white transition-colors duration-200"
+                            >
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                Cerrar sesión
+                            </button>
+                        </form>
+                    </div>
+                @endauth
             </header>
 
             <!-- Grid de Navegación -->
@@ -62,12 +88,6 @@
 
             <footer class="mt-12 pt-6 border-t border-[#E0E0E0] flex items-center justify-between text-[10px] text-[#9E9E9E] font-mono">
                 <span>SISTEMA VIVERO v1.0 | NEON DB CONNECTED</span>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="text-[#9E9E9E] hover:text-red-400 transition-colors duration-200 uppercase tracking-widest">
-                        Cerrar sesión
-                    </button>
-                </form>
             </footer>
         </div>
     </body>
